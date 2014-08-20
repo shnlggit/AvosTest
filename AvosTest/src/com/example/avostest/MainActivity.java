@@ -4,6 +4,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.avos.avoscloud.AVOSCloud;
+import com.avos.avoscloud.AVAnalytics;
+import com.avos.avoscloud.AVObject;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +14,13 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		AVOSCloud.initialize(this, "ri6ih4rgmcrt12xzuvof3n3awguoplcpz1mhkmpdacdonqjr", "x2dbfhpbmpp5m856nuudk9dxxovktsiu0i4imkkt8tddf98m");
+		AVAnalytics.trackAppOpened(getIntent());
+		
+		AVObject testObject = new AVObject("TestObject");
+		testObject.put("foo", "bar");
+		testObject.saveInBackground();
 	}
 
 	@Override
